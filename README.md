@@ -50,3 +50,5 @@ Column index, Movie (Year)
 
 Prediction:
 The variable you are predicting is the binary value for the user's rating of Miss Congeniality (2000).
+
+https://www.dataschool.io/simple-guide-to-confusion-matrix-terminology/
