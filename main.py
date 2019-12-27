@@ -4,10 +4,16 @@ import matplotlib.pyplot as plt
 from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import mean_squared_error
+import random
 
 # enviroment booleans
 DEBUG = True
 PLOTS = True
+SEED = 555
+#SEED = random.randint(0, 1000)
+
+print("=============== STARTING ===============")
+print("Debug:%r Plots:%r Seed:%d \n" % (DEBUG,  PLOTS, SEED))
 
 # read data form file CSV into pandas data structure
 training_data = pd.read_csv('data/CSV/netflix-train.csv', sep=';')
@@ -19,14 +25,15 @@ training_x = training_data.drop('expected', axis=1)
 testing_y = testing_data['expected']
 testing_x = testing_data.drop('expected', axis=1)
 
-# generate MLP with 1 hidden layer of 9 neurons (18input/2)
+# generate MLP with 1 hidden layer of 15 neurons (30 input/2)
 mlp = MLPClassifier(hidden_layer_sizes=(15,),
                     max_iter=500,
                     activation = 'relu',
                     solver='adam',
                     verbose=DEBUG,
-                    early_stopping=True,
+                    early_stopping=False,
                     validation_fraction=0.2,
+                    random_state=SEED
                     )
 mlp.fit(training_x, training_y)
 
